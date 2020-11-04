@@ -14,10 +14,10 @@ public class game {
 
     private ArrayList<String> types() {
         ArrayList<String> types = new ArrayList<>();
-        types.add("Spades");
-        types.add("Hearts");
-        types.add("Clubs");
-        types.add("Diamonds");
+        types.add("spades");
+        types.add("hearts");
+        types.add("clubs");
+        types.add("diamonds");
         return types;
     }
 
@@ -44,22 +44,8 @@ public class game {
         player player1 = new player(p1Hand);
         player player2 = new player(p2Hand);
 
-        for (int i = 0; i < 5; i++) {
-            System.out.println(player1.getHand().getCards(i));
-            System.out.println(player2.getHand().getCards(i));
-        }
-
-
-/*        System.out.println(card1.getCardName() + " of " + card1.getCardType());
-        System.out.println(card2.getCardName() + " of " + card2.getCardType());
-
-        if (card1.getCardValue() > card2.getCardValue()) {
-            System.out.println("Card 1 wins!");
-        } else if (card2.getCardValue() > card1.getCardValue()){
-            System.out.println("Card 2 wins!");
-        } else {
-            System.out.println("Its a tie! Draw again.");
-        }*/
+        System.out.println(player1.displayHand());
+        System.out.println(player2.displayHand());
 
     }
 
