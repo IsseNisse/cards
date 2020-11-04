@@ -1,5 +1,11 @@
 public class player {
-    public player(hand hand) {
+    private hand hand;
 
+    public player(hand hand) {
+        this.hand = hand;
+    }
+
+    public hand getHand() {
+        return hand;
     }
 }
