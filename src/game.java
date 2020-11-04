@@ -1,13 +1,6 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 public class game {
-    private int cardValue;
-    private String cardName;
-    private String cardType;
     ArrayList<card> cards = new ArrayList<>();
 
     public game() {
@@ -15,33 +8,24 @@ public class game {
     }
 
     private void read() {
-        Scanner file = null;
-        try {
-            file = new Scanner(new File("cards.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        ArrayList<String> types = new ArrayList<>();
+        types.add("Spades");
+        types.add("Hearts");
+        types.add("Clubs");
+        types.add("Diamonds");
 
-        for (int i = 0; i < 52; i++) {
-            cardValue = file.nextInt();
-            if (file.hasNext()) {
-                cardName = file.nextLine();
-                if (i < 14) {
-                    cardType = "spades";
-                } else if (i > 13 && i < 27) {
-                    cardType = "hearts";
-                } else if (i > 26 && i < 40) {
-                    cardType = "clubs";
-                } else if (i > 39 && i < 53) {
-                    cardType = "diamonds";
-                }
+        for (int j = 0; j < 4; j++) {
+            String cardType = types.get(j);
+            for (int k = 0; k < 13; k++) {
+                int cardValue = k + 1;
+                name.names cardName = name.getName(k);
+                cards.add(new card(cardValue, cardName, cardType));
             }
-            cards.add(new card(cardValue, cardName, cardType));
         }
     }
 
     private card drawnCard(deck deck) {
-        card cardSave = deck.getCards(1);
+        card cardSave = deck.getCards(0);
         int cardPos = deck.getDeck().indexOf(cardSave);
         cards.remove(cardPos);
         cards.add(cardSave);
@@ -55,8 +39,8 @@ public class game {
         card card1 = game.drawnCard(deck);
         card card2 = game.drawnCard(deck);
 
-        System.out.println(card1.getCardValue() + card1.getCardName() + " of " + card1.getCardType());
-        System.out.println(card2.getCardValue() + card2.getCardName() + " of " + card2.getCardType());
+        System.out.println(card1.getCardName() + " of " + card1.getCardType());
+        System.out.println(card2.getCardName() + " of " + card2.getCardType());
 
         if (card1.getCardValue() > card2.getCardValue()) {
             System.out.println("Card 1 wins!");

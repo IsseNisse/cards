@@ -1,9 +1,9 @@
 public class card {
-    private int cardValue;
-    private String cardName;
-    private String cardType;
+    private final int cardValue;
+    private final name.names cardName;
+    private final String cardType;
 
-    public card(int cardValue, String cardName, String cardType) {
+    public card(int cardValue, name.names cardName, String cardType) {
         this.cardName = cardName;
         this.cardType = cardType;
         this.cardValue = cardValue;
@@ -13,7 +13,7 @@ public class card {
         return cardValue;
     }
 
-    public String getCardName() {
+    public name.names getCardName() {
         return cardName;
     }
 

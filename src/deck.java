@@ -8,6 +8,10 @@ public class deck {
 
     public deck(ArrayList<card> cards) {
         this.cards = cards;
+        shuffle(cards);
+    }
+
+    private void shuffle(ArrayList<card> cards) {
         Collections.shuffle(cards);
     }
 
