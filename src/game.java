@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class game {
+    private static final int numberOfCards = 5;
     ArrayList<card> cards = new ArrayList<>();
 
     public game() {
@@ -33,22 +35,52 @@ public class game {
     }
 
     private static ArrayList<card> makeHand(deck deck) {
-        return deck.drawManyCards(5, deck);
+        return deck.drawManyCards(numberOfCards, deck);
     }
 
     public static void main(String[] args) {
+        ArrayList<hand> playerHands = new ArrayList<>();
+
         game game = new game();
         deck deck = new deck(game.cards);
-        hand p1Hand = new hand(makeHand(deck));
-        hand p2Hand = new hand(makeHand(deck));
-        player player1 = new player(p1Hand);
-        player player2 = new player(p2Hand);
+        playerHands.add(new hand(makeHand(deck)));
+        playerHands.add(new hand(makeHand(deck)));
+        player player1 = new player(playerHands.get(0));
+        player player2 = new player(playerHands.get(1));
 
-        System.out.println(player1.displayHand());
-        System.out.println(player2.displayHand());
+
+        for (int i = 0; i < playerHands.size(); i++) {
+            if (i == 0) {
+                System.out.println("PLayer 1 switch a card");
+                System.out.println(player1.displayHand(numberOfCards));
+            } else if (i == 1) {
+                System.out.println("Player 2 switch a card");
+                System.out.println(player2.displayHand(numberOfCards));
+            }
+                Scanner input = new Scanner(System.in);
+                int playerInput = input.nextInt();
+                int secondPlayerInput = input.nextInt();
+
+            discardCard(playerHands, deck, i, playerInput, secondPlayerInput);
+        }
+
+        System.out.println(player1.displayHand(numberOfCards));
+        System.out.println(player2.displayHand(numberOfCards));
+
+        if (player1.getHandValue(numberOfCards) < player2.getHandValue(numberOfCards)) {
+            System.out.println("player 2 wins!");
+        } else if (player2.getHandValue(numberOfCards) < player1.getHandValue(numberOfCards)) {
+            System.out.println("player 1 wins!");
+        } else {
+            System.out.println("Its a tie! draw 5 new cards.");
+        }
 
     }
 
-
-
+    private static void discardCard(ArrayList<hand> playerHands, deck deck, int i, int playerInput, int secondPlayerInput) {
+        playerHands.get(i).cards.remove(playerInput);
+        playerHands.get(i).cards.add(playerInput, deck.drawCard());
+        playerHands.get(i).cards.remove(secondPlayerInput);
+        playerHands.get(i).cards.add(secondPlayerInput, deck.drawCard());
+    }
 }

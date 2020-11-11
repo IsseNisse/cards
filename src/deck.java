@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class deck {
-    private card card;
-
     private final ArrayList<card> cards;
 
     public deck(ArrayList<card> cards) {
@@ -23,9 +21,9 @@ public class deck {
         return cards;
     }
 
-    public card drawCard(deck deck) {
-        card cardSave = deck.getCards(0);
-        int cardPos = deck.getDeck().indexOf(cardSave);
+    public card drawCard() {
+        card cardSave = getCards(0);
+        int cardPos = getDeck().indexOf(cardSave);
         cards.remove(cardPos);
         return cardSave;
     }
@@ -34,7 +32,7 @@ public class deck {
         ArrayList<card> drawnCards = new ArrayList<>();
 
         for (int i = 0; i < numberOfCards; i++) {
-            card cardDrawn = drawCard(deck);
+            card cardDrawn = drawCard();
             drawnCards.add(cardDrawn);
         }
         return drawnCards;

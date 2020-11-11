@@ -12,4 +12,12 @@ public class hand {
         String cardType = this.cards.get(i).getCardType();
         return cardName + " of " + cardType;
     }
+
+    public ArrayList<Integer> getCardValue(int numberOfCards) {
+        ArrayList<Integer> cardValues = new ArrayList<>();
+        for (int i = 0; i < numberOfCards; i++) {
+            cardValues.add(this.cards.get(i).getCardValue());
+        }
+        return cardValues;
+    }
 }
